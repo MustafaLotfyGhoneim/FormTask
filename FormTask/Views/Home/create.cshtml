@@ -1,0 +1,39 @@
+﻿@model FormTask.Models.formData
+@{
+    ViewBag.Title = "create";
+}
+
+<!DOCTYPE html>
+<script>
+    var previewimg = function (event) {
+        var result = document.getElementById("imgpreview");
+        result.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+<form method="post" enctype="multipart/form-data">
+    <br />
+    <table style="row-gap:20px">
+        <tr style="margin:10px">
+            <td>@Html.LabelFor(n => n.Title)</td>
+            <td>@Html.TextBoxFor(n => n.Title)</td>
+            <td>@Html.ValidationMessageFor(n => n.Title)</td>
+            <td></td>
+        </tr>
+        <tr style="margin-top:10px">
+            <td>@Html.LabelFor(n => n.Description)</td>
+            <td>@Html.TextAreaFor(n => n.Description)</td>
+            <td>@Html.ValidationMessageFor(n => n.Description)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(n => n.Image)</td>
+            <td><input type="file" name="ImageFile" onchange="previewimg(event)" required /></td>
+            <td> <img id="imgpreview" width="100" /> </td>
+            <td>@Html.ValidationMessageFor(n => n.Image)</td>
+
+        </tr>
+        <tr>
+            <td><input type="submit" value="register" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,44 @@
+﻿@using FormTask.Models
+@model List<formData>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Data List</h2>
+
+<p>
+    <span>
+        @Html.ActionLink("create", "create", null, new { @class = "btn btn-primary" })
+    </span>
+    <span>
+        @Html.ActionLink("Export To PDF", "PrintViewToPdf", null, new { @class = "btn btn-primary" })
+    </span>
+    <span>
+        @Html.ActionLink("Upload FTP", "UploadFTP", null, new { @class = "btn btn-primary" })
+    </span>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(n => Model[0].id)</th>
+            <th scope="col">@Html.DisplayNameFor(n => Model[0].Title)</th>
+            <th scope="col">@Html.DisplayNameFor(n => Model[0].Description)</th>
+            <th scope="col">File path</th>
+            <th scope="col">@Html.DisplayNameFor(n => Model[0].Image)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row">@Html.DisplayFor(n => item.id)</th>
+            <td>@Html.DisplayFor(n => item.Title)</td>
+            <td>@Html.DisplayFor(n => item.Description)</td>
+            <td>@Html.DisplayFor(n => item.Image)</td>
+            @*<td><img class="item-productimage" src="@Url.Content("~/Images/" + item.id.ToString() +".jpg"))"/></td>*@
+            <td><img class="item-productimage" src="@Url.Content(item.Image)" height="100" width="100" /></td>
+        </tr>
+        }
+
+    </tbody>
+</table>
